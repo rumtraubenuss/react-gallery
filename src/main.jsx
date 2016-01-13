@@ -2,25 +2,54 @@ import 'whatwg-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const dummy_api = [
-  'dummy.jpg',
-  'dummy.jpg',
-  'dummy.jpg',
-  'dummy.jpg',
-  'dummy.jpg',
-  'dummy.jpg',
-  'dummy.jpg',
-]
 const pathPrefix = 'images/'
 
-const Gallery = (props) => {
-  const images = dummy_api.map((val, idx) => {
-    const path = pathPrefix + val
-    return <img key={idx} src={path} />
-  })
+const API = {}
+API.getImages = function() {
   return (
-    <div>{images}</div>
+    fetch('http://localhost:8081/api')
+    .then(function(response) {
+      return response.json()
+    })
   )
 }
 
-ReactDOM.render(<Gallery/>, document.getElementById('app'))
+const Gallery = (props) => {
+
+  const images = props.images.map((val, idx) => {
+    const path = pathPrefix + val
+    return <img key={idx} src={path} />
+  })
+
+  return (
+    <div>{images}</div>
+  )
+
+}
+
+class Main extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {images: []}
+  }
+
+  componentDidMount() {
+    API.getImages().then((json) => {
+      this.setState({
+        images: json.items
+      })
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Gallery images={this.state.images} />
+      </div>
+    )
+  }
+
+}
+
+ReactDOM.render(<Main/>, document.getElementById('app'))
