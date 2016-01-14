@@ -6,17 +6,16 @@ const pathPrefix = 'images/'
 
 const API = {}
 API.getImages = function(callback) {
-  return (
-    fetch('http://localhost:8081/api')
-    .then(function(response) {
-      return response.json()
-    }).then(function(json){
-      callback(json)
-    })
-    .catch(function(ex){
-      console.log('Could not fetch data from API', ex)
-    })
-  )
+  fetch('http://localhost:8081/api')
+  .then(function(response) {
+    return response.json()
+  })
+  .then(function(json){
+    callback(json)
+  })
+  .catch(function(ex){
+    console.log('Could not fetch data from API', ex)
+  })
 }
 
 const Gallery = (props) => {
