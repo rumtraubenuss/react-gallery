@@ -33,12 +33,6 @@ const Gallery = (props) => {
 
 class Main extends React.Component {
 
-  handleApiData = (data) => {
-    this.setState({
-      images: data.items
-    })
-  };
-
   constructor(props) {
     super(props)
     this.state = {images: []}
@@ -55,6 +49,12 @@ class Main extends React.Component {
       </div>
     )
   }
+
+  handleApiData = (data) => {
+    this.setState({
+      images: data.items
+    })
+  };
 
 }
 
