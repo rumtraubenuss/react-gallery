@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
 
-  entry: './src/main.jsx',
+  entry: './src/index.jsx',
 
   output: {
     path: path.resolve(__dirname, 'dist'),
