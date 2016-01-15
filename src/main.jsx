@@ -7,13 +7,9 @@ const pathPrefix = 'images/'
 const API = {}
 API.getImages = function(callback) {
   fetch('http://localhost:8081/api')
-  .then(function(response) {
-    return response.json()
-  })
-  .then(function(json){
-    callback(json)
-  })
-  .catch(function(ex){
+  .then(res => res.json())
+  .then(json => callback(json))
+  .catch(ex => {
     console.log('Could not fetch data from API', ex)
   })
 }
