@@ -20,5 +20,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js'
+  },
+
+  resolve: {
+    root: path.resolve('./src'),
+    extensions: ['', '.js', '.jsx']
   }
 }
