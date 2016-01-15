@@ -23,12 +23,15 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "path": "^0.12.7",
+    "redux-devtools": "^3.0.1",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5",
     "whatwg-fetch": "^0.10.1"
   }
 }
