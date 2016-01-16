@@ -4,13 +4,8 @@ const pathPrefix = 'images/'
 
 export default props => {
 
-  const images = props.images.map((val, idx) => {
-    const path = pathPrefix + val
-    return <img key={idx} src={path} />
-  })
+  const images = props.images.map( (val, idx) => <img key={idx} src={pathPrefix + val} /> )
 
-  return (
-    <div>{images}</div>
-  )
+  return <div>{images}</div>
 
 }
