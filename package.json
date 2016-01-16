@@ -16,6 +16,9 @@
     "url": "https://github.com/rumtraubenuss/react-gallery/issues"
   },
   "homepage": "https://github.com/rumtraubenuss/react-gallery#readme",
+  "babel": {
+    "presets": ["react", "es2015", "stage-0"]
+  },
   "devDependencies": {
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.1",
