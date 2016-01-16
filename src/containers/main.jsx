@@ -1,32 +1,21 @@
 import React, { Component } from 'react'
-import API from '../../lib/api'
 import Gallery from '../components/gallery'
+import { connect } from 'react-redux'
 
 class Main extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {images: []}
-  }
-
-  componentDidMount() {
-    API.getImages(this.handleApiData)
-  }
-
   render() {
     return (
       <div>
-        <Gallery images={this.state.images} />
+        <Gallery images={this.props.images} />
       </div>
     )
   }
-
-  handleApiData = (data) => {
-    this.setState({
-      images: data.items
-    })
-  };
-
 }
 
-export default Main
+function select(state) {
+  return {
+    images: state.images
+  }
+}
+
+export default connect(select)(Main)
