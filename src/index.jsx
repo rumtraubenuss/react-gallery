@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { receiveImages } from './actions'
-import API from '../lib/api'
+import API from './lib/api'
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware
