@@ -5,3 +5,10 @@ export function receiveImages(images) {
     images: images
   }
 }
+
+export const LOAD_IMAGES = 'LOAD_IMAGES'
+export function loadImages() {
+  return {
+    type: LOAD_IMAGES
+  }
+}

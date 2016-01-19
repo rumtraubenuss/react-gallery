@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 
 class Main extends Component {
   render() {
+    const { images } = this.props
     return (
       <div>
-        <Gallery images={this.props.images} />
+        <Gallery images={images} />
       </div>
     )
   }

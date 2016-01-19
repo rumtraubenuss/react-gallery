@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/rumtraubenuss/react-gallery#readme",
   "babel": {
-    "presets": ["react", "es2015", "stage-0"]
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
@@ -31,11 +35,12 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
-    "redux-thunk": "^1.0.3",
+    "redux-saga": "^0.4.1",
     "whatwg-fetch": "^0.10.1"
   }
 }
