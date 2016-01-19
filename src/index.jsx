@@ -8,7 +8,6 @@ import sagaMiddleware from 'redux-saga'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { loadImages, receiveImages } from './actions'
-import API from './lib/api'
 import rootSaga from './sagas'
 
 const createStoreWithMiddleware = applyMiddleware(
