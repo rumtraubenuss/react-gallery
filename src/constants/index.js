@@ -1,0 +1,2 @@
+export const LOAD_IMAGES = 'LOAD_IMAGES'
+export const RECEIVE_IMAGES = 'RECEIVE_IMAGES'

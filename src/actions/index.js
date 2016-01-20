@@ -1,14 +1,14 @@
-export const RECEIVE_IMAGES = 'RECEIVE_IMAGES'
+import * as constants from '../constants/'
+
 export function receiveImages(images) {
   return {
-    type: RECEIVE_IMAGES,
+    type: constants.RECEIVE_IMAGES,
     images: images
   }
 }
 
-export const LOAD_IMAGES = 'LOAD_IMAGES'
 export function loadImages() {
   return {
-    type: LOAD_IMAGES
+    type: constants.LOAD_IMAGES
   }
 }

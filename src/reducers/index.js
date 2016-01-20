@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_IMAGES } from '../actions';
+import * as constants from '../constants/'
 
 function images(state = [], action) {
   switch(action.type) {
-    case RECEIVE_IMAGES:
+    case constants.RECEIVE_IMAGES:
       return action.images;
   }
   return state;
