@@ -7,7 +7,7 @@ class Main extends Component {
     const { images } = this.props
     return (
       <div>
-        <Gallery images={images} />
+        <Gallery activeIdx="0" images={images} />
       </div>
     )
   }
