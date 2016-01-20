@@ -12,3 +12,10 @@ export function loadImages() {
     type: constants.LOAD_IMAGES
   }
 }
+
+export function selectItem(id) {
+  return {
+    type: constants.SELECT_ITEM,
+    id: id
+  }
+}
