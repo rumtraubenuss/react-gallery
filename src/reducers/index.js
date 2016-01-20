@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import * as constants from '../constants/'
 
-function images(state = [], action) {
+function images(state = {items: [], selectedItem: undefined}, action) {
   switch(action.type) {
     case constants.RECEIVE_IMAGES:
-      return action.images;
+      return Object.assign({}, state, {items: action.images});
+    case constants.SELECT_ITEM:
+      return Object.assign({}, state, {selectedItem: action.id})
   }
   return state;
 }
