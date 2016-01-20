@@ -1,2 +1,3 @@
 export const LOAD_IMAGES = 'LOAD_IMAGES'
 export const RECEIVE_IMAGES = 'RECEIVE_IMAGES'
+export const SELECT_ITEM = 'SELECT_ITEM'
