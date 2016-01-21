@@ -23,7 +23,8 @@ const imgStyle = {
   width: '10%',
   border: '2px solid',
   margin: '2px',
-  borderColor: '#DDD'
+  borderColor: '#DDD',
+  cursor: 'pointer'
 }
 
 const imgStyleActive = {
