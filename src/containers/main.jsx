@@ -13,7 +13,12 @@ class Main extends Component {
     const { images } = this.props
     return (
       <div>
-        <Gallery handleClick={this.handleClick} activeIdx={images.selectedItem} images={images.items} />
+        <Gallery
+          handleClick={this.handleClick}
+          activeIdx={images.selectedItem}
+          images={images.items}
+          activeImage={images.items[images.selectedItem]}
+        />
       </div>
     )
   }

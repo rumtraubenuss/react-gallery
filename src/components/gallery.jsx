@@ -15,7 +15,14 @@ export default props => {
     )
   })
 
-  return <div>{images}</div>
+  const imageMain = props.activeImage ? <img src={pathPrefix + props.activeImage} /> : false
+
+  return (
+    <div>
+      <p>{images}</p>
+      {imageMain}
+    </div>
+  )
 
 }
 
