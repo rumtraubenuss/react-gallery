@@ -33,7 +33,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute path="foo" component={Main} />
+        <IndexRoute component={Main} />
         <Route path="blank" component={Blank} />
       </Route>
     </Router>
