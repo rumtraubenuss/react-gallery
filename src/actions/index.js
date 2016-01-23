@@ -25,6 +25,12 @@ export function endDummyTimeoutRedirect() {
   }
 }
 
+export function paginateImages(direction) {
+  return {
+    type: direction === 'next' ? constants.PAGINATE_IMAGES_NEXT : constants.PAGINATE_IMAGES_PREV
+  }
+}
+
 export function selectItem(id) {
   return {
     type: constants.SELECT_ITEM,

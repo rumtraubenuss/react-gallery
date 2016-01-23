@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Gallery from '../components/gallery'
 import { connect } from 'react-redux'
-import { triggerDummyTimeoutRedirect, selectItem } from '../actions/'
+import { triggerDummyTimeoutRedirect, selectItem, paginateImages } from '../actions/'
 
 class Main extends Component {
 
@@ -13,6 +13,10 @@ class Main extends Component {
     this.props.dispatch(triggerDummyTimeoutRedirect())
   };
 
+  handleClickPagination = direction => {
+    this.props.dispatch(paginateImages(direction))
+  };
+
   render() {
     const { images } = this.props
     return (
@@ -21,8 +25,9 @@ class Main extends Component {
           clickImageSelect={this.handleClickImageSelect}
           clickRedirect={this.handleClickRedirect}
           activeIdx={images.selectedItem}
-          images={images.items}
+          images={images.itemsPaginated}
           activeImage={images.items[images.selectedItem]}
+          clickPagination={this.handleClickPagination}
         />
       </div>
     )

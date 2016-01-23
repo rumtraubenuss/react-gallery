@@ -20,6 +20,10 @@ export default props => {
   return (
     <div>
       <p><a href="#" onClick={props.clickRedirect}>Click to redirect after timeout</a></p>
+      <div>
+        <button onClick={()=>props.clickPagination('prev')} type="button">&lt;</button>
+        <button onClick={()=>props.clickPagination('next')} type="button">&gt;</button>
+      </div>
       <p>{images}</p>
       {imageMain}
     </div>
