@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import Gallery from '../components/gallery'
 import { connect } from 'react-redux'
-import { selectItem } from '../actions/'
+import { triggerDummyTimeoutRedirect, selectItem } from '../actions/'
 
 class Main extends Component {
 
-  handleClick = (idx) => {
+  handleClickImageSelect = (idx) => {
     this.props.dispatch(selectItem(idx))
+  };
+
+  handleClickRedirect = () => {
+    this.props.dispatch(triggerDummyTimeoutRedirect())
   };
 
   render() {
@@ -14,7 +18,8 @@ class Main extends Component {
     return (
       <div>
         <Gallery
-          handleClick={this.handleClick}
+          clickImageSelect={this.handleClickImageSelect}
+          clickRedirect={this.handleClickRedirect}
           activeIdx={images.selectedItem}
           images={images.items}
           activeImage={images.items[images.selectedItem]}

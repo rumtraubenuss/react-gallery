@@ -8,11 +8,21 @@ function images(state = {items: [], selectedItem: undefined}, action) {
     case constants.SELECT_ITEM:
       return Object.assign({}, state, {selectedItem: action.id})
   }
-  return state;
+  return state
+}
+
+function dummy(state = {}, action) {
+  switch(action.type) {
+    case constants.END_DUMMY_TIMEOUT_REDIRECT:
+      console.log('received end timeout')
+      return state
+  }
+  return state
 }
 
 const fooApp = combineReducers({
-  images
+  images,
+  dummy
 });
 
 export default fooApp;

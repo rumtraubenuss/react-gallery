@@ -13,6 +13,18 @@ export function loadImages() {
   }
 }
 
+export function triggerDummyTimeoutRedirect() {
+  return {
+    type: constants.TRIGGER_DUMMY_TIMEOUT_REDIRECT
+  }
+}
+
+export function endDummyTimeoutRedirect() {
+  return {
+    type: constants.END_DUMMY_TIMEOUT_REDIRECT
+  }
+}
+
 export function selectItem(id) {
   return {
     type: constants.SELECT_ITEM,

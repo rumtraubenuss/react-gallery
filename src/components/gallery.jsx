@@ -7,7 +7,7 @@ export default props => {
   const images = props.images.map( (val, idx) => {
     return (
       <img
-        onClick={_ => props.handleClick(idx)}
+        onClick={() => props.clickImageSelect(idx)}
         style={Object.assign({}, imgStyle, props.activeIdx==idx && imgStyleActive)}
         key={idx}
         src={pathPrefix + val}
@@ -19,6 +19,7 @@ export default props => {
 
   return (
     <div>
+      <p><a href="#" onClick={props.clickRedirect}>Click to redirect after timeout</a></p>
       <p>{images}</p>
       {imageMain}
     </div>
