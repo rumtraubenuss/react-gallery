@@ -6,17 +6,26 @@ const initialImageState = {
   selectedItem: undefined,
   itemsPaginated: [],
   pageCurrent: 1,
-  itemsPerPage: 2
+  itemsPerPage: 4
 }
 
-function paginate(items, page, itemsPerPage=2, itemsPaginatedCurrent) {
-  if(page < 1 || !(Math.floor(page * itemsPerPage) <= items.length)) {
-    return {itemsPaginatedCurrent, page}
-  } else {
-    return {
-      items: items.slice((page - 1) * itemsPerPage, page * itemsPerPage),
-      page
+function paginate(items, pageCurrent, itemsPerPage, itemsPaginatedCurrent, direction=undefined) {
+  if(typeof direction != 'undefined') {
+    const cond_a = pageCurrent <= 1 && direction === 'prev'
+    const cond_b = pageCurrent * itemsPerPage >= items.length && direction === 'next'
+    if(cond_a || cond_b) {
+      return {
+        items: itemsPaginatedCurrent,
+        page: pageCurrent
+      }
     }
+  }
+  let newPage = pageCurrent
+  if(direction === 'next') newPage += 1
+  if(direction === 'prev') newPage -= 1
+  return {
+    items: items.slice((newPage - 1) * itemsPerPage, newPage * itemsPerPage),
+    page: newPage
   }
 }
 
@@ -35,7 +44,7 @@ function images(state = initialImageState, action) {
     case constants.SELECT_ITEM:
       return Object.assign({}, state, {selectedItem: action.id})
     case constants.PAGINATE_IMAGES_NEXT:
-      res = paginate(state.items, state.pageCurrent + 1, state.itemsPerPage, state.itemsPaginated)
+      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, 'next')
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
@@ -43,7 +52,7 @@ function images(state = initialImageState, action) {
         }
       )
     case constants.PAGINATE_IMAGES_PREV:
-      res = paginate(state.items, state.pageCurrent - 1, state.itemsPerPage, state.itemsPaginated)
+      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, 'prev')
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
