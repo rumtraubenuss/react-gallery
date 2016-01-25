@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { PREV, NEXT } from '../utils/'
 
 const pathPrefix = 'images/'
 
-export default props => {
+const Gallery = props => {
 
   const images = props.images.map( (val) => {
     return (
@@ -32,7 +32,14 @@ export default props => {
 
 }
 
-// TODO: Add propTypes
+Gallery.propTypes = {
+  images: PropTypes.array.isRequired,
+  clickImageSelect: PropTypes.func.isRequired,
+  clickPagination: PropTypes.func.isRequired,
+  clickRedirect: PropTypes.func.isRequired,
+  activeId: PropTypes.number,
+  activeImage: PropTypes.object
+}
 
 const imgStyle = {
   width: '10%',
@@ -45,3 +52,6 @@ const imgStyle = {
 const imgStyleActive = {
   borderColor: '#F00'
 }
+
+export default Gallery
+
