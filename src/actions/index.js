@@ -1,4 +1,5 @@
 import * as constants from '../constants/'
+import { NEXT } from '../utils/'
 
 export function receiveImages(images) {
   return {
@@ -27,7 +28,7 @@ export function endDummyTimeoutRedirect() {
 
 export function paginateImages(direction) {
   return {
-    type: direction === 'next' ? constants.PAGINATE_IMAGES_NEXT : constants.PAGINATE_IMAGES_PREV
+    type: direction === NEXT ? constants.PAGINATE_IMAGES_NEXT : constants.PAGINATE_IMAGES_PREV
   }
 }
 

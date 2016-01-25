@@ -1,4 +1,5 @@
 import React from 'react'
+import { PREV, NEXT } from '../utils/'
 
 const pathPrefix = 'images/'
 
@@ -21,8 +22,8 @@ export default props => {
     <div>
       <p><a href="#" onClick={props.clickRedirect}>Click to redirect after timeout</a></p>
       <div>
-        <button onClick={()=>props.clickPagination('prev')} type="button">&lt;</button>
-        <button onClick={()=>props.clickPagination('next')} type="button">&gt;</button>
+        <button onClick={()=>props.clickPagination(PREV)} type="button">&lt;</button>
+        <button onClick={()=>props.clickPagination(NEXT)} type="button">&gt;</button>
       </div>
       <p>{images}</p>
       {imageMain}

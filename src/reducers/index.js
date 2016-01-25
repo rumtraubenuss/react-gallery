@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import * as constants from '../constants/'
+import { paginate, PREV, NEXT } from '../utils/'
 
 const initialImageState = {
   items: [],
@@ -7,27 +8,6 @@ const initialImageState = {
   itemsPaginated: [],
   pageCurrent: 1,
   itemsPerPage: 4
-}
-
-// TODO: Move to module
-function paginate(items, pageCurrent, itemsPerPage, itemsPaginatedCurrent, direction=undefined) {
-  if(typeof direction != 'undefined') {
-    const cond_a = pageCurrent <= 1 && direction === 'prev'
-    const cond_b = pageCurrent * itemsPerPage >= items.length && direction === 'next'
-    if(cond_a || cond_b) {
-      return {
-        items: itemsPaginatedCurrent,
-        page: pageCurrent
-      }
-    }
-  }
-  let newPage = pageCurrent
-  if(direction === 'next') newPage += 1
-  if(direction === 'prev') newPage -= 1
-  return {
-    items: items.slice((newPage - 1) * itemsPerPage, newPage * itemsPerPage),
-    page: newPage
-  }
 }
 
 function images(state = initialImageState, action) {
@@ -46,7 +26,7 @@ function images(state = initialImageState, action) {
       // TODO: Calculate considering active page
       return Object.assign({}, state, {selectedItem: action.id})
     case constants.PAGINATE_IMAGES_NEXT:
-      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, 'next')
+      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, NEXT)
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
@@ -54,7 +34,7 @@ function images(state = initialImageState, action) {
         }
       )
     case constants.PAGINATE_IMAGES_PREV:
-      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, 'prev')
+      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, PREV)
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
