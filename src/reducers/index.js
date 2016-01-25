@@ -14,16 +14,16 @@ function images(state = initialImageState, action) {
   let res
   switch(action.type) {
     case constants.RECEIVE_IMAGES:
-      res = paginate(action.images, state.pageCurrent, state.itemsPerPage, state.itemsPaginated)
+      const imageObjects = action.images.map( (image, index) => { return  {image:image, id: index} })
+      res = paginate(imageObjects, state.pageCurrent, state.itemsPerPage, state.itemsPaginated)
       return Object.assign({}, state,
         {
-          items: action.images,
+          items: imageObjects,
           itemsPaginated: res.items,
           pageCurrent: res.page
         }
       )
     case constants.SELECT_ITEM:
-      // TODO: Calculate considering active page
       return Object.assign({}, state, {selectedItem: action.id})
     case constants.PAGINATE_IMAGES_NEXT:
       res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, NEXT)

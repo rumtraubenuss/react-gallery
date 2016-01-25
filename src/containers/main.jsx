@@ -5,8 +5,8 @@ import { triggerDummyTimeoutRedirect, selectItem, paginateImages } from '../acti
 
 class Main extends Component {
 
-  handleClickImageSelect = (idx) => {
-    this.props.dispatch(selectItem(idx))
+  handleClickImageSelect = (id) => {
+    this.props.dispatch(selectItem(id))
   };
 
   handleClickRedirect = () => {
@@ -24,7 +24,7 @@ class Main extends Component {
         <Gallery
           clickImageSelect={this.handleClickImageSelect}
           clickRedirect={this.handleClickRedirect}
-          activeIdx={images.selectedItem}
+          activeId={images.selectedItem}
           images={images.itemsPaginated}
           activeImage={images.items[images.selectedItem]}
           clickPagination={this.handleClickPagination}

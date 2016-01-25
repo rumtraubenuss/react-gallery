@@ -5,18 +5,18 @@ const pathPrefix = 'images/'
 
 export default props => {
 
-  const images = props.images.map( (val, idx) => {
+  const images = props.images.map( (val) => {
     return (
       <img
-        onClick={() => props.clickImageSelect(idx)}
-        style={Object.assign({}, imgStyle, props.activeIdx==idx && imgStyleActive)}
-        key={idx}
-        src={pathPrefix + val}
+        onClick={() => props.clickImageSelect(val.id)}
+        style={Object.assign({}, imgStyle, props.activeId === val.id && imgStyleActive)}
+        key={val.id}
+        src={pathPrefix + val.image}
       />
     )
   })
 
-  const imageMain = props.activeImage ? <img src={pathPrefix + props.activeImage} /> : false
+  const imageMain = props.activeImage ? <img src={pathPrefix + props.activeImage.image} /> : false
 
   return (
     <div>
