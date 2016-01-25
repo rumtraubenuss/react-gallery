@@ -9,6 +9,7 @@ const initialImageState = {
   itemsPerPage: 4
 }
 
+// TODO: Move to module
 function paginate(items, pageCurrent, itemsPerPage, itemsPaginatedCurrent, direction=undefined) {
   if(typeof direction != 'undefined') {
     const cond_a = pageCurrent <= 1 && direction === 'prev'
@@ -42,6 +43,7 @@ function images(state = initialImageState, action) {
         }
       )
     case constants.SELECT_ITEM:
+      // TODO: Calculate considering active page
       return Object.assign({}, state, {selectedItem: action.id})
     case constants.PAGINATE_IMAGES_NEXT:
       res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, 'next')

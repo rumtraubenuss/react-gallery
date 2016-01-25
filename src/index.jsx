@@ -40,3 +40,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+
+// TODO: Add redux dev tools

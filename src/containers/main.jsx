@@ -34,6 +34,8 @@ class Main extends Component {
   }
 }
 
+// TODO: Add propTypes
+
 function select(state) {
   return {
     images: state.images

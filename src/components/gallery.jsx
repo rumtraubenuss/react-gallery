@@ -31,6 +31,8 @@ export default props => {
 
 }
 
+// TODO: Add propTypes
+
 const imgStyle = {
   width: '10%',
   border: '2px solid',
