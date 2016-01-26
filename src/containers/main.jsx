@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Gallery from '../components/gallery'
 import { connect } from 'react-redux'
 import { triggerDummyTimeoutRedirect, selectItem, paginateImages } from '../actions/'
@@ -34,7 +34,10 @@ class Main extends Component {
   }
 }
 
-// TODO: Add propTypes
+Main.propTypes = {
+  images: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
+}
 
 function select(state) {
   return {
