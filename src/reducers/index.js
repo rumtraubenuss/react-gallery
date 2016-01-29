@@ -11,11 +11,10 @@ const initialImageState = {
 }
 
 function images(state = initialImageState, action) {
-  let res
   switch(action.type) {
-    case constants.RECEIVE_IMAGES:
+    case constants.RECEIVE_IMAGES:{
       const imageObjects = action.images.map( (image, index) => { return  {image:image, id: index} })
-      res = paginate(imageObjects, state.pageCurrent, state.itemsPerPage, state.itemsPaginated)
+      let res = paginate(imageObjects, state.pageCurrent, state.itemsPerPage, state.itemsPaginated)
       return Object.assign({}, state,
         {
           items: imageObjects,
@@ -23,24 +22,28 @@ function images(state = initialImageState, action) {
           pageCurrent: res.page
         }
       )
-    case constants.SELECT_ITEM:
+    }
+    case constants.SELECT_ITEM:{
       return Object.assign({}, state, {selectedItem: action.id})
-    case constants.PAGINATE_IMAGES_NEXT:
-      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, NEXT)
+    }
+    case constants.PAGINATE_IMAGES_NEXT:{
+      let res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, NEXT)
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
           pageCurrent: res.page
         }
       )
-    case constants.PAGINATE_IMAGES_PREV:
-      res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, PREV)
+    }
+    case constants.PAGINATE_IMAGES_PREV:{
+      let res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, PREV)
       return Object.assign({}, state,
         {
           itemsPaginated: res.items,
           pageCurrent: res.page
         }
       )
+    }
   }
   return state
 }
