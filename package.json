@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An image gallery",
   "watch": {
-    "test": "{src,test}/*.js"
+    "test": "{src,test}/**/*.js"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base dist --inline",
