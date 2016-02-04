@@ -53,6 +53,7 @@
     "whatwg-fetch": "^0.10.1"
   },
   "jshintConfig": {
-    "esversion": 6
+    "esversion": 6,
+    "asi": true
   }
 }
