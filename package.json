@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
