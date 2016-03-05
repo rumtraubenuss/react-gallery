@@ -5,27 +5,32 @@ import ReactDOM from 'react-dom'
 import App from './containers/app'
 import Main from './containers/main'
 import Blank from './components/blank'
-import rootReducer from './reducers'
+import * as reducers from './reducers'
 import sagaMiddleware from 'redux-saga'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import { Provider } from 'react-redux'
 import { loadImages, receiveImages } from './actions'
 import rootSaga from './sagas'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistory, routeReducer } from 'redux-simple-router'
 
-const reducer = combineReducers(Object.assign({}, rootReducer, {
+const reducer = combineReducers(Object.assign({}, reducers, {
   routing: routeReducer
 }))
 
 const reduxRouterMiddleware = syncHistory(browserHistory)
 
-const createStoreWithMiddleware = applyMiddleware(
-  sagaMiddleware(rootSaga),
-  reduxRouterMiddleware
-)(createStore)
-
-const store = createStoreWithMiddleware(rootReducer)
+const store = createStore(
+  reducer,
+  {},
+  compose(
+    applyMiddleware(
+      sagaMiddleware(rootSaga),
+      reduxRouterMiddleware
+    ),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+)
 
 store.dispatch(loadImages())
 
@@ -40,5 +45,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
-
-// TODO: Add redux dev tools
