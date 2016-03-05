@@ -10,7 +10,7 @@ const initialImageState = {
   itemsPerPage: 4
 }
 
-function images(state = initialImageState, action) {
+export function images(state = initialImageState, action) {
   switch(action.type) {
     case constants.RECEIVE_IMAGES:{
       const imageObjects = action.images.map( (image, index) => { return  {image:image, id: index} })
@@ -48,7 +48,7 @@ function images(state = initialImageState, action) {
   return state
 }
 
-function dummy(state = {}, action) {
+export function dummy(state = {}, action) {
   switch(action.type) {
     case constants.END_DUMMY_TIMEOUT_REDIRECT:
       console.log('received end timeout')
@@ -56,10 +56,3 @@ function dummy(state = {}, action) {
   }
   return state
 }
-
-const fooApp = combineReducers({
-  images,
-  dummy
-});
-
-export default fooApp;
