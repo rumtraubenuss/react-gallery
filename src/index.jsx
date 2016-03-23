@@ -13,9 +13,11 @@ import { loadImages, receiveImages } from './actions'
 import rootSaga from './sagas'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistory, routeReducer } from 'redux-simple-router'
+import { form as formReducer } from 'redux-form';
 
 const reducer = combineReducers(Object.assign({}, reducers, {
-  routing: routeReducer
+  routing: routeReducer,
+  form: formReducer,
 }))
 
 const reduxRouterMiddleware = syncHistory(browserHistory)
