@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Gallery from '../components/gallery'
+import LoginForm from '../components/login_form'
 import { connect } from 'react-redux'
 import { triggerDummyTimeoutRedirect, selectItem, paginateImages } from '../actions/'
+import { getValues } from 'redux-form'
 
 class Main extends Component {
 
@@ -17,6 +19,11 @@ class Main extends Component {
     this.props.dispatch(paginateImages(direction))
   };
 
+  handleLoginFormSubmit = () => {
+    const myFormValues = getValues(this.props.loginForm);
+    console.log('FORM_DATA: ', myFormValues);
+  };
+
   render() {
     const { images } = this.props
     return (
@@ -29,6 +36,7 @@ class Main extends Component {
           activeImage={images.items[images.selectedItem]}
           clickPagination={this.handleClickPagination}
         />
+        <LoginForm onSubmit={this.handleLoginFormSubmit} />
       </div>
     )
   }
@@ -41,7 +49,8 @@ Main.propTypes = {
 
 function select(state) {
   return {
-    images: state.images
+    images: state.images,
+    loginForm:  state.form.login,
   }
 }
 
