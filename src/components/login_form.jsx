@@ -6,11 +6,9 @@ let LoginForm = (props) => {
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email</label>
           <input type="email" placeholder="Email" {...email}/>
         </div>
         <div>
-          <label>Last Name</label>
           <input type="password" placeholder="Password" {...password}/>
         </div>
         <button type="submit">Submit</button>
