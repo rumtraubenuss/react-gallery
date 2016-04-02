@@ -14,6 +14,7 @@ import rootSaga from './sagas'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistory, routeReducer } from 'redux-simple-router'
 import { reducer as formReducer } from 'redux-form'
+import Firebase from 'firebase'
 
 const reducer = combineReducers({
   ...reducers,
@@ -48,3 +49,17 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+
+// Firebase
+
+const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
+
+firebase.onAuth(authData => {
+  if(authData) {
+    console.log('GOT LOGIN')
+  } else {
+    console.log('NOT LOGGED IN')
+    firebase.off();
+  }
+})
+
