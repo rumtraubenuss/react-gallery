@@ -36,8 +36,7 @@ class Main extends Component {
           activeImage={images.items[images.selectedItem]}
           clickPagination={this.handleClickPagination}
         />
-        <LoginForm onSubmit={this.handleLoginFormSubmit} />
-        {loggedIn && <span>LOGGED IN</span>}
+        {loggedIn && <span>LOGGED IN</span> || <LoginForm onSubmit={this.handleLoginFormSubmit} />}
       </div>
     )
   }
