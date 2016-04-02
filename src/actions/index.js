@@ -38,3 +38,11 @@ export function selectItem(id) {
     id: id
   }
 }
+
+export function triggerLogin(email, password) {
+  return {
+    type: constants.TRIGGER_LOGIN,
+    email,
+    password,
+  }
+}
