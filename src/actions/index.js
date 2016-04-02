@@ -47,6 +47,12 @@ export function triggerLogin(email, password) {
   }
 }
 
+export function triggerLogout() {
+  return {
+    type: constants.TRIGGER_LOGOUT,
+  }
+}
+
 export function authChange(status) {
   return {
     type: constants.AUTH_CHANGE,

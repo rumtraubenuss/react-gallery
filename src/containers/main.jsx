@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Gallery from '../components/gallery'
 import LoginForm from '../components/login_form'
 import { connect } from 'react-redux'
-import { triggerDummyTimeoutRedirect, selectItem, paginateImages, triggerLogin } from '../actions/'
+import { triggerDummyTimeoutRedirect, selectItem, paginateImages, triggerLogin, triggerLogout } from '../actions/'
 import { getValues } from 'redux-form'
 
 class Main extends Component {
@@ -24,6 +24,10 @@ class Main extends Component {
     this.props.dispatch(triggerLogin(email, password))
   };
 
+  handleLogout = () => {
+    this.props.dispatch(triggerLogout())
+  };
+
   render() {
     const { images, loggedIn } = this.props
     return (
@@ -36,7 +40,7 @@ class Main extends Component {
           activeImage={images.items[images.selectedItem]}
           clickPagination={this.handleClickPagination}
         />
-        {loggedIn && <span>LOGGED IN</span> || <LoginForm onSubmit={this.handleLoginFormSubmit} />}
+        {loggedIn && <a onClick={this.handleLogout} href="#">LOGOUT</a> || <LoginForm onSubmit={this.handleLoginFormSubmit} />}
       </div>
     )
   }

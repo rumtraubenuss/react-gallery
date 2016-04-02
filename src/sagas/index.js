@@ -25,9 +25,14 @@ export function* dummyTimeoutRedirect() {
 export function* firebaseLogin(action) {
   while(true) {
     const { email, password, type } = yield take(constants.TRIGGER_LOGIN)
-    console.log(firebase.authWithPassword({email, password}))
-    //const res = yield call(firebase.authWithPassword, {email: email, password: password})
-    //console.log('SAGA LOGIN TRIGGERED', email, password, type)
+    firebase.authWithPassword({email, password})
+  }
+}
+
+export function* firebaseLogout(action) {
+  while(true) {
+    yield take(constants.TRIGGER_LOGOUT)
+    firebase.unauth()
   }
 }
 
@@ -35,6 +40,7 @@ export default function* root() {
   yield fork(fetchImages)
   yield fork(dummyTimeoutRedirect)
   yield fork(firebaseLogin)
+  yield fork(firebaseLogout)
 }
 
 function delay(time) {

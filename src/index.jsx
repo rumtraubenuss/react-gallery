@@ -57,10 +57,8 @@ const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
 firebase.onAuth(authData => {
   if(authData) {
     store.dispatch(authChange(true))
-    console.log('GOT LOGIN')
   } else {
     store.dispatch(authChange(false))
-    console.log('NOT LOGGED IN')
     firebase.off();
   }
 })
