@@ -48,6 +48,18 @@ export function images(state = initialImageState, action) {
   return state
 }
 
+export function user(state = { loggedIn: undefined }, action) {
+  switch(action.type) {
+    case constants.AUTH_CHANGE: {
+      if(action.status === true){
+        return { ...state, loggedIn: true }
+      }
+      return { ...state, loggedIn: false }
+    }
+  }
+  return state
+}
+
 export function dummy(state = {}, action) {
   switch(action.type) {
     case constants.END_DUMMY_TIMEOUT_REDIRECT:

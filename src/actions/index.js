@@ -46,3 +46,10 @@ export function triggerLogin(email, password) {
     password,
   }
 }
+
+export function authChange(status) {
+  return {
+    type: constants.AUTH_CHANGE,
+    status
+  }
+}

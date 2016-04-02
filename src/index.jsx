@@ -9,7 +9,7 @@ import * as reducers from './reducers'
 import sagaMiddleware from 'redux-saga'
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import { Provider } from 'react-redux'
-import { loadImages, receiveImages } from './actions'
+import { loadImages, receiveImages, authChange } from './actions'
 import rootSaga from './sagas'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistory, routeReducer } from 'redux-simple-router'
@@ -56,8 +56,10 @@ const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
 
 firebase.onAuth(authData => {
   if(authData) {
+    store.dispatch(authChange(true))
     console.log('GOT LOGIN')
   } else {
+    store.dispatch(authChange(false))
     console.log('NOT LOGGED IN')
     firebase.off();
   }
