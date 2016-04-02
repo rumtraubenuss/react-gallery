@@ -25,7 +25,7 @@ class Main extends Component {
   };
 
   render() {
-    const { images } = this.props
+    const { images, loggedIn } = this.props
     return (
       <div>
         <Gallery
@@ -37,6 +37,7 @@ class Main extends Component {
           clickPagination={this.handleClickPagination}
         />
         <LoginForm onSubmit={this.handleLoginFormSubmit} />
+        {loggedIn && <span>LOGGED IN</span>}
       </div>
     )
   }
@@ -51,6 +52,7 @@ function select(state) {
   return {
     images: state.images,
     loginForm:  state.form.login,
+    loggedIn: state.user.loggedIn,
   }
 }
 
