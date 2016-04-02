@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Gallery from '../components/gallery'
 import LoginForm from '../components/login_form'
 import { connect } from 'react-redux'
-import { triggerDummyTimeoutRedirect, selectItem, paginateImages } from '../actions/'
+import { triggerDummyTimeoutRedirect, selectItem, paginateImages, triggerLogin } from '../actions/'
 import { getValues } from 'redux-form'
 
 class Main extends Component {
@@ -20,8 +20,8 @@ class Main extends Component {
   };
 
   handleLoginFormSubmit = () => {
-    const myFormValues = getValues(this.props.loginForm);
-    console.log('FORM_DATA: ', myFormValues);
+    const { email, password } = getValues(this.props.loginForm);
+    this.props.dispatch(triggerLogin(email, password))
   };
 
   render() {
