@@ -3,6 +3,7 @@ import { receiveImages, endDummyTimeoutRedirect } from '../actions'
 import * as constants from '../constants/'
 import { routeActions } from 'redux-simple-router'
 import Firebase from 'firebase'
+import { startSubmit, stopSubmit } from 'redux-form';
 
 const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
 
@@ -15,7 +16,8 @@ export function* fetchImages() {
 }
 
 export function* dummyTimeoutRedirect() {
-  while(yield take(constants.TRIGGER_DUMMY_TIMEOUT_REDIRECT)) {
+  while(true) {
+    yield take(constants.TRIGGER_DUMMY_TIMEOUT_REDIRECT)
     const result = yield call(delay, 1000)
     yield put(routeActions.push('/blank'))
     yield put(endDummyTimeoutRedirect())
@@ -25,7 +27,9 @@ export function* dummyTimeoutRedirect() {
 export function* firebaseLogin(action) {
   while(true) {
     const { email, password, type } = yield take(constants.TRIGGER_LOGIN)
-    firebase.authWithPassword({email, password})
+    yield put(startSubmit('login'))
+    yield firebase.authWithPassword({email, password})
+    yield put(stopSubmit('login'))
   }
 }
 

@@ -21,7 +21,7 @@ class Main extends Component {
 
   handleLoginFormSubmit = () => {
     const { email, password } = getValues(this.props.loginForm);
-    this.props.dispatch(triggerLogin(email, password))
+    return this.props.dispatch(triggerLogin(email, password))
   };
 
   handleLogout = () => {

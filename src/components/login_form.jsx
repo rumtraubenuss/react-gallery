@@ -13,7 +13,7 @@ const validate = values => {
 }
 
 let LoginForm = (props) => {
-    const {fields: {password, email}, handleSubmit} = props
+    const {fields: {password, email}, handleSubmit, submitting} = props
     return (
       <form onSubmit={handleSubmit}>
         <div>
@@ -24,7 +24,7 @@ let LoginForm = (props) => {
           <input type="password" placeholder="Password" {...password}/>
           {password.touched && password.error && <div>{password.error}</div>}
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={submitting}>Submit</button>
       </form>
     )
 }
