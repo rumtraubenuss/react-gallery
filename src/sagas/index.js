@@ -5,7 +5,7 @@ import { routeActions } from 'redux-simple-router'
 import Firebase from 'firebase'
 import { startSubmit, stopSubmit } from 'redux-form';
 
-const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
+const firebasePath = 'https://popping-fire-3816.firebaseio.com'
 
 export function* fetchImages() {
   while(yield take(constants.LOAD_IMAGES)) {
@@ -25,6 +25,7 @@ export function* dummyTimeoutRedirect() {
 }
 
 export function* firebaseLogin(action) {
+  const firebase = new Firebase(firebasePath)
   while(true) {
     const { email, password, type } = yield take(constants.TRIGGER_LOGIN)
     yield put(startSubmit('login'))
@@ -34,6 +35,7 @@ export function* firebaseLogin(action) {
 }
 
 export function* firebaseLogout(action) {
+  const firebase = new Firebase(firebasePath)
   while(true) {
     yield take(constants.TRIGGER_LOGOUT)
     firebase.unauth()
