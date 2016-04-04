@@ -59,3 +59,11 @@ export function authChange(status) {
     status
   }
 }
+
+export function pushNode(node) {
+  return {
+    type: constants.PUSH_NODE,
+    node
+  }
+}
+

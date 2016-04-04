@@ -42,11 +42,23 @@ export function* firebaseLogout(action) {
   }
 }
 
+export function* firebasePush(action) {
+  let firebase
+  while(true) {
+    const { path = '/foo', node, formName = '' } = yield take(constants.PUSH_NODE)
+    firebase = new Firebase(firebasePath + path)
+    //yield put(startSubmit(formName))
+    yield firebase.push(node)
+    //yield put(stopSubmit(formName))
+  }
+}
+
 export default function* root() {
   yield fork(fetchImages)
   yield fork(dummyTimeoutRedirect)
   yield fork(firebaseLogin)
   yield fork(firebaseLogout)
+  yield fork(firebasePush)
 }
 
 function delay(time) {
