@@ -1,4 +1,4 @@
-import { take, put, call, fork, race } from 'redux-saga'
+import { take, put, call, fork, race, apply } from 'redux-saga'
 import { receiveImages, endDummyTimeoutRedirect } from '../actions'
 import * as constants from '../constants/'
 import { routeActions } from 'redux-simple-router'
@@ -45,11 +45,14 @@ export function* firebaseLogout(action) {
 export function* firebasePush(action) {
   let firebase
   while(true) {
-    const { path = '/foo', node, formName = '' } = yield take(constants.PUSH_NODE)
-    firebase = new Firebase(firebasePath + path)
-    //yield put(startSubmit(formName))
-    yield firebase.push(node)
-    //yield put(stopSubmit(formName))
+    const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
+    try {
+      firebase = new Firebase(firebasePath + path)
+      const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
+    }
+    catch(er) {
+      console.log('ERROR', er)
+    }
   }
 }
 
