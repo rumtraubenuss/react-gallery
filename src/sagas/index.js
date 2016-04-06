@@ -46,8 +46,8 @@ export function* firebasePush(action) {
   let firebase
   while(true) {
     const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
+    firebase = new Firebase(firebasePath + path)
     try {
-      firebase = new Firebase(firebasePath + path)
       const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
     }
     catch(er) {
