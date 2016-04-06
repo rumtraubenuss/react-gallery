@@ -60,6 +60,18 @@ export function user(state = { loggedIn: undefined }, action) {
   return state
 }
 
+export function network(state = {busy: false}, action) {
+  switch(action.type) {
+    case constants.SYNC_START: {
+      return { ...state, busy: true }
+    }
+    case constants.SYNC_STOP: {
+      return { ...state, busy: false }
+    }
+  }
+  return state
+}
+
 export function dummy(state = {}, action) {
   switch(action.type) {
     case constants.END_DUMMY_TIMEOUT_REDIRECT:
@@ -68,3 +80,4 @@ export function dummy(state = {}, action) {
   }
   return state
 }
+
