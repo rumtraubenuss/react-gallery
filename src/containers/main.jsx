@@ -33,7 +33,7 @@ class Main extends Component {
   };
 
   render() {
-    const { images, loggedIn } = this.props
+    const { images, loggedIn, busy } = this.props
     return (
       <div>
         <Gallery
@@ -47,6 +47,7 @@ class Main extends Component {
         {loggedIn && <a onClick={this.handleLogout} href="#">LOGOUT</a>
           || <LoginForm onSubmit={this.handleLoginFormSubmit} />}
         {loggedIn && <p><a onClick={this.handlePush} href="#">PUSH</a></p>}
+        <p>Network status: {busy && <span>Transfering</span> || <span>Idle</span>} </p>
       </div>
     )
   }
@@ -62,6 +63,7 @@ function select(state) {
     images: state.images,
     loginForm:  state.form.login,
     loggedIn: state.user.loggedIn,
+    busy: state.network.busy,
   }
 }
 

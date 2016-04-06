@@ -1,5 +1,5 @@
 import { take, put, call, fork, race, apply } from 'redux-saga'
-import { receiveImages, endDummyTimeoutRedirect } from '../actions'
+import { receiveImages, endDummyTimeoutRedirect, networkChange } from '../actions'
 import * as constants from '../constants/'
 import { routeActions } from 'redux-simple-router'
 import Firebase from 'firebase'
@@ -47,12 +47,14 @@ export function* firebasePush(action) {
   while(true) {
     const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
     firebase = new Firebase(firebasePath + path)
+    yield put(networkChange('start'))
     try {
       const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
     }
     catch(er) {
       console.log('ERROR', er)
     }
+    yield put(networkChange('stop'))
   }
 }
 

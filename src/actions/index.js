@@ -67,3 +67,10 @@ export function pushNode(node) {
   }
 }
 
+export function networkChange(status) {
+  const type = status == 'start' ? constants.NETWORK_SYNC_START : constants.NETWORK_SYNC_STOP
+  return {
+    type
+  }
+}
+

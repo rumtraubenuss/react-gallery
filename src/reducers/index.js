@@ -62,10 +62,10 @@ export function user(state = { loggedIn: undefined }, action) {
 
 export function network(state = {busy: false}, action) {
   switch(action.type) {
-    case constants.SYNC_START: {
+    case constants.NETWORK_SYNC_START: {
       return { ...state, busy: true }
     }
-    case constants.SYNC_STOP: {
+    case constants.NETWORK_SYNC_STOP: {
       return { ...state, busy: false }
     }
   }
