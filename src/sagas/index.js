@@ -29,8 +29,10 @@ export function* firebaseLogin(action) {
   while(true) {
     const { email, password, type } = yield take(constants.TRIGGER_LOGIN)
     yield put(startSubmit('login'))
+    yield put(networkChange('start'))
     yield firebase.authWithPassword({email, password})
     yield put(stopSubmit('login'))
+    yield put(networkChange('stop'))
   }
 }
 
