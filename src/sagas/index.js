@@ -48,15 +48,16 @@ export function* firebasePush(action) {
   let firebase
   while(true) {
     const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
+    const transactionObject = {}
     firebase = new Firebase(firebasePath + path)
-    yield put(networkChange('start'))
+    yield put(networkChange('start', transactionObject))
     try {
       const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
     }
     catch(er) {
       console.log('ERROR', er)
     }
-    yield put(networkChange('stop'))
+    yield put(networkChange('stop', transactionObject))
   }
 }
 

@@ -60,13 +60,15 @@ export function user(state = { loggedIn: undefined }, action) {
   return state
 }
 
-export function network(state = {busy: false}, action) {
+export function network(state = {busy: false, transactionQueue: []}, action) {
   switch(action.type) {
     case constants.NETWORK_SYNC_START: {
-      return { ...state, busy: true }
+      return { ...state, busy: true, transactionQueue:[...state.transactionQueue, action.transactionObject] }
     }
     case constants.NETWORK_SYNC_STOP: {
-      return { ...state, busy: false }
+      const newQueue = state.transactionQueue.filter(obj => obj !== action.transactionObject)
+      const newBusy = newQueue.length > 0
+      return { ...state, busy: newBusy, transactionQueue: newQueue }
     }
   }
   return state
