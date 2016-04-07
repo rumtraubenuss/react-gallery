@@ -66,9 +66,9 @@ export function network(state = {busy: false, transactionQueue: []}, action) {
       return { ...state, busy: true, transactionQueue:[...state.transactionQueue, action.transactionObject] }
     }
     case constants.NETWORK_SYNC_STOP: {
-      const newQueue = state.transactionQueue.filter(obj => obj !== action.transactionObject)
-      const newBusy = newQueue.length > 0
-      return { ...state, busy: newBusy, transactionQueue: newQueue }
+      const transactionQueue = state.transactionQueue.filter(obj => obj !== action.transactionObject)
+      const busy = transactionQueue.length > 0
+      return { ...state, busy, transactionQueue }
     }
   }
   return state
