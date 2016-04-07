@@ -67,7 +67,7 @@ export function pushNode(node) {
   }
 }
 
-export function networkChange(status, transactionObject) {
+export function networkChange(status, transactionObject = {}) {
   const type = status == 'start' ? constants.NETWORK_SYNC_START : constants.NETWORK_SYNC_STOP
   return {
     type,

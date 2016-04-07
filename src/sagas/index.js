@@ -29,10 +29,10 @@ export function* firebaseLogin(action) {
   while(true) {
     const { email, password, type } = yield take(constants.TRIGGER_LOGIN)
     yield put(startSubmit('login'))
-    yield put(networkChange('start'))
+    const { transactionObject } = yield put(networkChange('start'))
     yield firebase.authWithPassword({email, password})
     yield put(stopSubmit('login'))
-    yield put(networkChange('stop'))
+    yield put(networkChange('stop', transactionObject))
   }
 }
 
@@ -48,9 +48,8 @@ export function* firebasePush(action) {
   let firebase
   while(true) {
     const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
-    const transactionObject = {}
     firebase = new Firebase(firebasePath + path)
-    yield put(networkChange('start', transactionObject))
+    const { transactionObject } = yield put(networkChange('start'))
     try {
       const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
     }
