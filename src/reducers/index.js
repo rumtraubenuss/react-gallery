@@ -15,34 +15,31 @@ export function images(state = initialImageState, action) {
     case constants.RECEIVE_IMAGES:{
       const imageObjects = action.images.map( (image, index) => { return  {image:image, id: index} })
       let res = paginate(imageObjects, state.pageCurrent, state.itemsPerPage, state.itemsPaginated)
-      return Object.assign({}, state,
-        {
-          items: imageObjects,
-          itemsPaginated: res.items,
-          pageCurrent: res.page
-        }
-      )
+      return ({
+        ...state,
+        items: imageObjects,
+        itemsPaginated: res.items,
+        pageCurrent: res.page,
+      })
     }
     case constants.SELECT_ITEM:{
-      return Object.assign({}, state, {selectedItem: action.id})
+      return { ...state, selectedItem: action.id }
     }
     case constants.PAGINATE_IMAGES_NEXT:{
       let res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, NEXT)
-      return Object.assign({}, state,
-        {
-          itemsPaginated: res.items,
-          pageCurrent: res.page
-        }
-      )
+      return ({
+        ...state,
+        itemsPaginated: res.items,
+        pageCurrent: res.page
+      })
     }
     case constants.PAGINATE_IMAGES_PREV:{
       let res = paginate(state.items, state.pageCurrent, state.itemsPerPage, state.itemsPaginated, PREV)
-      return Object.assign({}, state,
-        {
-          itemsPaginated: res.items,
-          pageCurrent: res.page
-        }
-      )
+      return ({
+        ...state,
+        itemsPaginated: res.items,
+        pageCurrent: res.page,
+      })
     }
   }
   return state
