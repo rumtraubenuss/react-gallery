@@ -56,9 +56,9 @@ const firebase = new Firebase('https://popping-fire-3816.firebaseio.com')
 
 firebase.onAuth(authData => {
   if(authData) {
-    store.dispatch(authChange(true))
+    store.dispatch(authChange(authData.uid))
   } else {
-    store.dispatch(authChange(false))
+    store.dispatch(authChange())
     firebase.off();
   }
 })

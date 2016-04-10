@@ -53,10 +53,10 @@ export function triggerLogout() {
   }
 }
 
-export function authChange(status) {
+export function authChange(uid) {
   return {
     type: constants.AUTH_CHANGE,
-    status
+    uid
   }
 }
 

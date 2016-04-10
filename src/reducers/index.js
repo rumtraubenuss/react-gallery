@@ -45,13 +45,14 @@ export function images(state = initialImageState, action) {
   return state
 }
 
-export function user(state = { loggedIn: undefined }, action) {
+export function user(state = { loggedIn: undefined, uid: undefined }, action) {
+  const uid = action.uid
   switch(action.type) {
     case constants.AUTH_CHANGE: {
-      if(action.status === true){
-        return { ...state, loggedIn: true }
+      if(!!action.uid === true){
+        return { ...state, loggedIn: true, uid }
       }
-      return { ...state, loggedIn: false }
+      return { ...state, loggedIn: false, uid: undefined }
     }
   }
   return state
