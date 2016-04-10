@@ -50,6 +50,7 @@ export function* firebasePush(action) {
     const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
     firebase = new Firebase(firebasePath + path)
     const { transactionObject } = yield put(networkChange('start'))
+    yield put(startSubmit('push'))
     try {
       const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
     }
@@ -57,6 +58,7 @@ export function* firebasePush(action) {
       console.log('ERROR', er)
     }
     yield put(networkChange('stop', transactionObject))
+    yield put(stopSubmit('push'))
   }
 }
 
