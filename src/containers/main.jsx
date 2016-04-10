@@ -49,7 +49,6 @@ class Main extends Component {
         />
         {loggedIn && <a onClick={this.handleLogout} href="#">LOGOUT</a>
           || <LoginForm onSubmit={this.handleLoginFormSubmit} />}
-        {loggedIn && <p><a onClick={this.handlePush} href="#">PUSH</a></p>}
         { loggedIn && <FormPush onSubmit={this.handlePush} /> }
         <p>Network status: {busy && <span>Transfering</span> || <span>Idle</span>} </p>
       </div>
