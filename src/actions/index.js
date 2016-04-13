@@ -60,10 +60,11 @@ export function authChange(uid) {
   }
 }
 
-export function pushNode(node) {
+export function pushNode(node, val) {
   return {
     type: constants.PUSH_NODE,
-    node
+    node,
+    val,
   }
 }
 

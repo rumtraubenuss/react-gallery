@@ -30,8 +30,9 @@ class Main extends Component {
   };
 
   handlePush = () => {
-    const { text } = getValues(this.props.formPush);
-    this.props.dispatch(pushNode({ foo: text }))
+    const { text } = getValues(this.props.formPush)
+    const { uid } = this.props
+    this.props.dispatch(pushNode(`/messages/${uid}/`, text))
     this.props.dispatch(reset('push'))
   };
 
@@ -67,6 +68,7 @@ function select(state) {
     loginForm:  state.form.login,
     formPush:  state.form.push,
     loggedIn: state.user.loggedIn,
+    uid: state.user.uid,
     busy: state.network.busy,
   }
 }

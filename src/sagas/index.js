@@ -47,12 +47,12 @@ export function* firebaseLogout(action) {
 export function* firebasePush(action) {
   let firebase
   while(true) {
-    const { path = '/foo/bar', node, formName = '' } = yield take(constants.PUSH_NODE)
-    firebase = new Firebase(firebasePath + path)
+    const { node, val } = yield take(constants.PUSH_NODE)
+    firebase = new Firebase(firebasePath + node)
     const { transactionObject } = yield put(networkChange('start'))
     yield put(startSubmit('push'))
     try {
-      const res = yield apply(firebase, firebase.push, [node, (a,b) => null])
+      const res = yield apply(firebase, firebase.push, [val, (a, b) => null])
     }
     catch(er) {
       console.log('ERROR', er)
