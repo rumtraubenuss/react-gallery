@@ -25,7 +25,7 @@ function delay(time) {
 export function* dummyTimeoutRedirect() {
   for (;;) {
     yield take(constants.TRIGGER_DUMMY_TIMEOUT_REDIRECT);
-    call(delay, 1000);
+    yield call(delay, 1000);
     yield put(routeActions.push('/blank'));
     yield put(endDummyTimeoutRedirect());
   }
