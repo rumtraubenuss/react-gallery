@@ -1,4 +1,4 @@
-import { take, put, call, fork, apply } from 'redux-saga';
+import { take, put, call, fork, apply } from 'redux-saga/effects';
 import { receiveImages, endDummyTimeoutRedirect, networkChange } from '../actions';
 import * as constants from '../constants/';
 import { routeActions } from 'redux-simple-router';
@@ -69,9 +69,11 @@ export function* firebasePush() {
 }
 
 export default function* root() {
-  yield fork(fetchImages);
-  yield fork(dummyTimeoutRedirect);
-  yield fork(firebaseLogin);
-  yield fork(firebaseLogout);
-  yield fork(firebasePush);
+  yield [
+    fork(fetchImages),
+    fork(dummyTimeoutRedirect),
+    fork(firebaseLogin),
+    fork(firebaseLogout),
+    fork(firebasePush),
+  ]
 }

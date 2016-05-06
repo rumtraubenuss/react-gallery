@@ -6,7 +6,7 @@ import App from './containers/app'
 import Main from './containers/main'
 import Blank from './components/blank'
 import * as reducers from './reducers'
-import sagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga'
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import { Provider } from 'react-redux'
 import { loadImages, receiveImages, authChange } from './actions'
@@ -23,18 +23,21 @@ const reducer = combineReducers({
 })
 
 const reduxRouterMiddleware = syncHistory(browserHistory)
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
   {},
   compose(
     applyMiddleware(
-      sagaMiddleware(rootSaga),
+      sagaMiddleware,
       reduxRouterMiddleware
     ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
+sagaMiddleware.run(rootSaga)
 
 store.dispatch(loadImages())
 
