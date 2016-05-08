@@ -75,5 +75,5 @@ export default function* root() {
     fork(firebaseLogin),
     fork(firebaseLogout),
     fork(firebasePush),
-  ]
+  ];
 }
