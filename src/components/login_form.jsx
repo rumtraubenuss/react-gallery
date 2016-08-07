@@ -12,7 +12,7 @@ const validate = values => {
   return errors
 }
 
-let LoginForm = (props) => {
+export const LoginForm = props => {
     const {fields: {password, email}, handleSubmit, submitting} = props
     return (
       <form onSubmit={handleSubmit}>
@@ -29,10 +29,10 @@ let LoginForm = (props) => {
     )
 }
 
-LoginForm = reduxForm({
+const LoginFormConnected = reduxForm({
   form: 'login',
   fields: ['email', 'password'],
   validate,
 })(LoginForm)
 
-export default LoginForm
+export default LoginFormConnected
