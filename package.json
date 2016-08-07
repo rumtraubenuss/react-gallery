@@ -64,6 +64,7 @@
     "redux-form": "^5.2.3",
     "redux-saga": "^0.10.2",
     "redux-simple-router": "^2.0.4",
+    "sinon": "^1.17.5",
     "whatwg-fetch": "^1.0.0"
   }
 }
